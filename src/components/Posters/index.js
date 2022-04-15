@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { MdOutlineArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
+import { Loading } from '../Loading';
 
 import {
   Container,
@@ -20,32 +21,32 @@ export const Posters = ({ movies, isOriginal = false }) => {
     carousel.current.scrollLeft += carousel.current.offsetWidth;
   };
 
+  if (!movies.item) return <Loading />;
+
   return (
     <Container>
-      <section>
-        <h2>{movies.title}</h2>
-        <div>
-          <PosterCarousel ref={carousel} originalNetflixMovie={isOriginal}>
-            {movies.item &&
-              movies.item[0].map((movie) => (
-                <li key={movie.id}>
-                  <img
-                    src={`${base_url}${movie.poster_path}`}
-                    alt={movie.title || movie.name}
-                  />
-                </li>
-              ))}
-          </PosterCarousel>
+      <h2>{movies.title}</h2>
+      <div>
+        <PosterCarousel ref={carousel} originalNetflixMovie={isOriginal}>
+          {movies.item &&
+            movies.item[0].map((movie) => (
+              <li key={movie.id}>
+                <img
+                  src={`${base_url}${movie.poster_path}`}
+                  alt={movie.title || movie.name}
+                />
+              </li>
+            ))}
+        </PosterCarousel>
 
-          <ArrowButtonLeft type="button" onClick={handleLeftClick}>
-            <MdOutlineArrowBackIosNew />
-          </ArrowButtonLeft>
+        <ArrowButtonLeft type="button" onClick={handleLeftClick}>
+          <MdOutlineArrowBackIosNew />
+        </ArrowButtonLeft>
 
-          <ArrowButtonRight type="button" onClick={handleRightClick}>
-            <MdArrowForwardIos />
-          </ArrowButtonRight>
-        </div>
-      </section>
+        <ArrowButtonRight type="button" onClick={handleRightClick}>
+          <MdArrowForwardIos />
+        </ArrowButtonRight>
+      </div>
     </Container>
   );
 };

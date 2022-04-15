@@ -1,22 +1,19 @@
 import styled from 'styled-components';
 
-export const Container = styled.main`
+export const Container = styled.section`
   margin-left: 5%;
+  margin-bottom: 3rem;
 
-  section {
-    margin-bottom: 3rem;
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
 
-    h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-    }
+  div {
+    position: relative;
 
-    div {
-      position: relative;
-
-      &:hover button {
-        opacity: 1;
-      }
+    &:hover button {
+      opacity: 1;
     }
   }
 `;
